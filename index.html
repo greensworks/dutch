@@ -21,7 +21,7 @@
 </head>
 <body class="bg-[#F8F9FA] text-[#1A1A1A]">
 
-<div class="max-w-md mx-auto min-h-screen flex flex-direction-column relative pb-24">
+<div class="max-w-6xl mx-auto min-h-screen flex flex-direction-column relative pb-24 px-4">
     
     <!-- HEADER -->
     <header class="p-6 bg-white border-b border-gray-100 sticky top-0 z-50 shadow-sm">
@@ -52,7 +52,7 @@
     </main>
 
     <!-- NAVIGATION BAR -->
-    <nav class="glass-nav fixed bottom-0 left-0 right-0 max-w-md mx-auto border-t border-gray-100 p-4 flex justify-around items-center z-50">
+    <nav class="glass-nav fixed bottom-0 left-0 right-0 max-w-6xl mx-auto border-t border-gray-100 p-4 flex justify-around items-center z-50">
         <button onclick="showSection('roadmap')" class="nav-item text-gray-400 hover:text-orange-500 flex flex-col items-center">
             <i class="fas fa-map-signs text-xl"></i>
             <span class="text-[10px] mt-1 font-bold">15 GÜN</span>
@@ -117,9 +117,9 @@
 
     // 1. DERSLERİ GÖSTER
     function renderLessons() {
-        main.innerHTML = `<div class="grid grid-cols-2 gap-4">` + 
+        main.innerHTML = `<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">` + 
             masterData.map((d, index) => `
-                <div onclick="showLessonDetail(${index})" class="les-card bg-white p-5 rounded-3xl shadow-sm border border-gray-100 flex flex-col items-center justify-center text-center">
+                <div onclick="showLessonDetail(${index})" class="les-card bg-white p-5 rounded-3xl shadow-sm border border-gray-100 flex flex-col items-center justify-center text-center hover:shadow-lg transition-shadow">
                     <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mb-3 text-orange-600">
                         <i class="fas fa-layer-group"></i>
                     </div>
@@ -135,14 +135,14 @@
         main.innerHTML = `
             <button onclick="renderLessons()" class="mb-4 text-orange-600 font-bold text-sm"><i class="fas fa-chevron-left mr-2"></i>Geri Dön</button>
             <h2 class="text-xl font-bold mb-6">${data.les} Kelime Listesi</h2>
-            <div class="space-y-3">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 ${data.words.map(w => `
-                    <div class="bg-white p-4 rounded-2xl flex justify-between items-center shadow-sm border border-gray-50">
+                    <div class="bg-white p-4 rounded-2xl flex justify-between items-center shadow-sm border border-gray-50 hover:shadow-md transition-shadow">
                         <div>
                             <p class="font-bold text-lg text-gray-800">${w.nl}</p>
                             <p class="text-sm text-gray-500">${w.tr}</p>
                         </div>
-                        <button onclick="speak('${w.nl}')" class="w-10 h-10 rounded-full bg-gray-50 text-gray-400 flex items-center justify-center hover:bg-orange-100 hover:text-orange-600">
+                        <button onclick="speak('${w.nl}')" class="w-10 h-10 rounded-full bg-gray-50 text-gray-400 flex items-center justify-center hover:bg-orange-100 hover:text-orange-600 transition-colors">
                             <i class="fas fa-volume-up"></i>
                         </button>
                     </div>
@@ -164,11 +164,11 @@
         ];
         main.innerHTML = `
             <h2 class="text-xl font-bold mb-6">15 Günlük Başarı Planı</h2>
-            <div class="space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 ${schedule.map(s => `
-                    <div class="flex gap-4 items-start">
-                        <div class="bg-orange-500 text-white font-bold px-3 py-1 rounded-lg text-sm">GÜN ${s.d}</div>
-                        <div class="flex-grow pb-4 border-b border-gray-100">
+                    <div class="flex gap-4 items-start bg-white p-4 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                        <div class="bg-orange-500 text-white font-bold px-3 py-1 rounded-lg text-sm flex-shrink-0">GÜN ${s.d}</div>
+                        <div class="flex-grow">
                             <p class="text-sm font-semibold">${s.t}</p>
                         </div>
                     </div>
@@ -191,15 +191,15 @@
             });
         });
 
-        main.innerHTML = `<div class="space-y-3">` + 
+        main.innerHTML = `<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">` + 
             results.map(r => `
-                <div class="bg-white p-4 rounded-2xl flex justify-between items-center shadow-sm border border-orange-100">
+                <div class="bg-white p-4 rounded-2xl flex justify-between items-center shadow-sm border border-orange-100 hover:shadow-md transition-shadow">
                     <div>
                         <p class="font-bold text-gray-800">${r.nl}</p>
                         <p class="text-sm text-gray-500">${r.tr}</p>
                         <span class="text-[9px] uppercase font-bold text-orange-400">${r.les}</span>
                     </div>
-                    <button onclick="speak('${r.nl}')" class="text-orange-400 p-2"><i class="fas fa-volume-up"></i></button>
+                    <button onclick="speak('${r.nl}')" class="text-orange-400 p-2 hover:bg-orange-50 rounded-full transition-colors"><i class="fas fa-volume-up"></i></button>
                 </div>
             `).join('') + `</div>`;
     });
@@ -211,7 +211,7 @@
         
         main.innerHTML = `
             <div class="flex flex-col items-center justify-center pt-10">
-                <div class="word-card w-full h-64 cursor-pointer" onclick="this.querySelector('.flip-content').classList.toggle('flipped')">
+                <div class="word-card w-full max-w-2xl h-64 cursor-pointer" onclick="this.querySelector('.flip-content').classList.toggle('flipped')">
                     <div class="flip-content relative w-full h-full shadow-lg rounded-3xl">
                         <!-- ÖN YÜZ -->
                         <div class="front absolute inset-0 bg-orange-600 text-white rounded-3xl flex flex-col items-center justify-center p-6 text-center">
