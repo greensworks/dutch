@@ -37,15 +37,7 @@
         </div>
     </header>
 
-    <!-- SEARCH & FILTERS -->
-    <div class="p-4 bg-white sticky top-[81px] z-40">
-        <div class="relative">
-            <i class="fas fa-search absolute left-4 top-3.5 text-gray-400"></i>
-            <input type="text" id="masterSearch" placeholder="Hollandaca veya Türkçe ara..." 
-                   class="w-full pl-12 pr-4 py-3 bg-gray-100 rounded-2xl outline-none focus:ring-2 focus:ring-orange-400 transition-all">
-        </div>
-    </div>
-
+    
     <!-- MAIN AREA -->
     <main id="mainContent" class="px-4 py-2 flex-grow">
         <!-- İçerik Dinamik Olarak Buraya Gelecek -->
@@ -59,62 +51,128 @@
         </button>
         <button onclick="showSection('dictionary')" class="nav-item text-orange-600 flex flex-col items-center">
             <i class="fas fa-th-large text-xl"></i>
-            <span class="text-[10px] mt-1 font-bold">DERSLER</span>
-        </button>
-        <button onclick="startPractice()" class="nav-item text-gray-400 hover:text-orange-500 flex flex-col items-center">
-            <i class="fas fa-bolt text-xl"></i>
-            <span class="text-[10px] mt-1 font-bold">PRATİK</span>
+            <span class="text-[10px] mt-1 font-bold">SÖZLÜK</span>
         </button>
     </nav>
 </div>
 
 <script>
-    // TÜM VERİ SETİ (PDF'DEKİ TÜM KELİMELERİN SİSTEMATİK ÖZETİ)
+    // TÜM VERİ SETİ (A'DAN Z'YE TAM HOLLANDACA-TÜRKÇE SÖZLÜK)
     const masterData = [
-        { les: "Les 21", words: [
-            { nl: "wat", tr: "ne" }, { nl: "is", tr: "-dir" }, { nl: "uw", tr: "sizin" }, { nl: "naam (de)", tr: "ad/isim" },
-            { nl: "dag", tr: "merhaba" }, { nl: "mevrouw (de)", tr: "bayan" }, { nl: "goedemiddag", tr: "iyi günler" },
-            { nl: "kan (kunnen)", tr: "olabilir" }, { nl: "ik", tr: "ben" }, { nl: "u", tr: "size/siz" }, { nl: "helpen", tr: "yardım etmek" },
-            { nl: "wil (willen)", tr: "istiyorum" }, { nl: "mij", tr: "kendimi" }, { nl: "graag", tr: "isteyerek" }, { nl: "goed", tr: "iyi" }
+        { les: "A-D", words: [
+            { nl: "wat", tr: "ne" }, { nl: "is", tr: "-dir" }, { nl: "uw", tr: "sizin" }, { nl: "naam", tr: "ad/isim" },
+            { nl: "dag", tr: "merhaba / gün" }, { nl: "mevrouw", tr: "bayan / hanımefendi" }, { nl: "goedemiddag", tr: "iyi günler" },
+            { nl: "kan", tr: "olabilir / yapabilir" }, { nl: "ik", tr: "ben" }, { nl: "u", tr: "siz" }, { nl: "helpen", tr: "yardım etmek" },
+            { nl: "wil", tr: "istemek" }, { nl: "mij", tr: "bana / beni" }, { nl: "graag", tr: "isteyerek / memnuniyetle" }, { nl: "inschrijven", tr: "kayıt etmek" },
+            { nl: "goed", tr: "iyi" }, { nl: "mijn", tr: "benim" }, { nl: "waar", tr: "nerede" }, { nl: "woont", tr: "oturuyor / yaşıyor" },
+            { nl: "in", tr: "içinde / -da / -de" }, { nl: "en", tr: "ve" }, { nl: "adres", tr: "adres" }, { nl: "weet", tr: "biliyor" },
+            { nl: "postcode", tr: "posta kodu" }, { nl: "ja", tr: "evet" }, { nl: "hebt", tr: "sahip olmak / var" }, { nl: "telefoon", tr: "telefon" },
+            { nl: "nummer", tr: "numara" }, { nl: "dat", tr: "bu / şu" }, { nl: "een", tr: "bir" }, { nl: "makkelijk", tr: "kolay" },
+            { nl: "ook", tr: "de / da / ayrıca" }, { nl: "mobiel", tr: "cep telefonu" }, { nl: "zeker", tr: "kesinlikle" }, { nl: "even", tr: "biraz / bir süre" },
+            { nl: "denken", tr: "düşünmek" }, { nl: "wacht", tr: "bekle" }, { nl: "kijk", tr: "bak" }, { nl: "boekje", tr: "defter / kitapçık" },
+            { nl: "hier", tr: "burada" }, { nl: "staat", tr: "yazıyor / duruyor" }, { nl: "moeilijk", tr: "zor" }, { nl: "vergeet", tr: "unutmak" },
+            { nl: "steeds", tr: "her seferinde / sürekli" }, { nl: "nul", tr: "sıfır" }, { nl: "één", tr: "bir" }, { nl: "twee", tr: "iki" },
+            { nl: "drie", tr: "üç" }, { nl: "vier", tr: "dört" }, { nl: "vijf", tr: "beş" }, { nl: "zes", tr: "altı" },
+            { nl: "zeven", tr: "yedi" }, { nl: "acht", tr: "sekiz" }, { nl: "negen", tr: "dokuz" }, { nl: "tien", tr: "on" },
+            { nl: "vragen", tr: "sorular" }, { nl: "kennen", tr: "tanımak" }, { nl: "wij", tr: "biz" }, { nl: "elkaar", tr: "birbirimizi" },
+            { nl: "geloof", tr: "inanç / inanmak" }, { nl: "niet", tr: "değil / hayır" }, { nl: "jij", tr: "sen" }, { nl: "bij", tr: "yanında / -da" },
+            { nl: "straat", tr: "sokak" }, { nl: "zie", tr: "görüyorum" }, { nl: "jou", tr: "seni / sana" }, { nl: "vaak", tr: "sık sık" },
+            { nl: "fietsen", tr: "bisiklet sürmek" }, { nl: "met", tr: "ile" }, { nl: "hoe", tr: "nasıl" }, { nl: "heet", tr: "adı olmak" },
+            { nl: "ben", tr: "-im / -ım (olmak fiili)" }, { nl: "alleen", tr: "yalnız" }, { nl: "nee", tr: "hayır" }, { nl: "vriend", tr: "arkadaş" },
+            { nl: "hij", tr: "o (erkek)" }, { nl: "vrouw", tr: "kadın / eş" }, { nl: "er", tr: "orada" }, { nl: "ze", tr: "o (kadın) / onlar" },
+            { nl: "onze", tr: "bizim" }, { nl: "kinderen", tr: "çocuklar" }, { nl: "die", tr: "o / şu" }, { nl: "jongen", tr: "erkek çocuk" },
+            { nl: "meisje", tr: "kız çocuk" }, { nl: "zijn", tr: "olmak / onun (erkek)" }, { nl: "jouw", tr: "senin" }, { nl: "leuke", tr: "hoş / güzel" },
+            { nl: "altijd", tr: "her zaman" }, { nl: "buiten", tr: "dışarıda" }, { nl: "zoon", tr: "oğlan evlat" }, { nl: "dochter", tr: "kız evlat" },
+            { nl: "oud", tr: "yaş / eski" }, { nl: "twaalf", tr: "oniki" }, { nl: "bijna", tr: "hemen hemen" }, { nl: "elf", tr: "onbir" },
+            { nl: "geen", tr: "yok / değil" }, { nl: "nog", tr: "daha" }, { nl: "jong", tr: "genç" }, { nl: "dertien", tr: "onüç" },
+            { nl: "veertien", tr: "ondört" }, { nl: "vijftien", tr: "onbeş" }, { nl: "twintig", tr: "yirmi" }, { nl: "dertig", tr: "otuz" },
+            { nl: "honderd", tr: "yüz" }, { nl: "ons", tr: "bizim" }, { nl: "huis", tr: "ev" }, { nl: "deur", tr: "kapı" },
+            { nl: "kom", tr: "gel" }, { nl: "binnen", tr: "içeri" }, { nl: "welkom", tr: "hoş geldin" }, { nl: "keuken", tr: "mutfak" },
+            { nl: "achter", tr: "arka / arkada" }, { nl: "maar", tr: "ama / ancak" }, { nl: "trap", tr: "merdiven" }, { nl: "boven", tr: "yukarı / üstte" },
+            { nl: "eerste", tr: "birinci" }, { nl: "verdieping", tr: "kat" }, { nl: "badkamer", tr: "banyo" }, { nl: "slaapkamer", tr: "yatak odası" },
+            { nl: "hun", tr: "onların" }, { nl: "eigen", tr: "kendi" }, { nl: "kamer", tr: "oda" }, { nl: "deze", tr: "bu" },
+            { nl: "tweede", tr: "ikinci" }, { nl: "kleine", tr: "küçük" }, { nl: "liggen", tr: "yatmak / bulunmak" }, { nl: "ruimte", tr: "alan / yer" },
+            { nl: "we", tr: "biz" }, { nl: "spullen", tr: "eşyalar" }, { nl: "nodig", tr: "ihtiyaç / gerekli" }, { nl: "nu", tr: "şimdi" },
+            { nl: "alles", tr: "her şey" }, { nl: "ruime", tr: "geniş" }, { nl: "woning", tr: "konut / ev" }, { nl: "toilet", tr: "tuvalet" },
+            { nl: "beneden", tr: "aşağıda" }, { nl: "gang", tr: "koridor" }, { nl: "links", tr: "sol" }, { nl: "rechts", tr: "sağ" },
+            { nl: "licht", tr: "ışık / lamba" }
         ]},
-        { les: "Les 22", words: [
-            { nl: "vragen (de)", tr: "sorular" }, { nl: "kennen", tr: "tanımak" }, { nl: "wij", tr: "biz" }, { nl: "elkaar", tr: "birbirimizi" },
-            { nl: "geloof (geloven)", tr: "inanç" }, { nl: "niet", tr: "değil" }, { nl: "jij", tr: "sen" }, { nl: "straat (de)", tr: "sokak" }
+        { les: "E-L", words: [
+            { nl: "januari", tr: "Ocak" }, { nl: "winter", tr: "kış" }, { nl: "dagen", tr: "günler" }, { nl: "kort", tr: "kısa" },
+            { nl: "nachten", tr: "geceler" }, { nl: "lang", tr: "uzun" }, { nl: "vandaag", tr: "bugün" }, { nl: "koud", tr: "soğuk" },
+            { nl: "warm", tr: "sıcak" }, { nl: "april", tr: "Nisan" }, { nl: "wordt", tr: "oluyor" }, { nl: "voorjaar", tr: "ilkbahar" },
+            { nl: "fijn", tr: "hoş / iyi" }, { nl: "seizoen", tr: "mevsim" }, { nl: "zonder", tr: "-sız / -siz (olmadan)" }, { nl: "eindelijk", tr: "nihayet" },
+            { nl: "lente", tr: "bahar" }, { nl: "mooi", tr: "güzel" }, { nl: "bloemen", tr: "çiçekler" }, { nl: "juli", tr: "Temmuz" },
+            { nl: "zomer", tr: "yaz" }, { nl: "heerlijk", tr: "şahane" }, { nl: "weer", tr: "hava / tekrar" }, { nl: "niemand", tr: "kimse" },
+            { nl: "droog", tr: "kuru" }, { nl: "vrij", tr: "serbest / boş" }, { nl: "want", tr: "çünkü / zira" }, { nl: "scholen", tr: "okullar" },
+            { nl: "dicht", tr: "kapalı" }, { nl: "oktober", tr: "Ekim" }, { nl: "najaar", tr: "sonbahar" }, { nl: "bladeren", tr: "yapraklar" },
+            { nl: "rood", tr: "kırmızı" }, { nl: "geel", tr: "sarı" }, { nl: "regent", tr: "yağmur yağıyor" }, { nl: "veel", tr: "çok" },
+            { nl: "nat", tr: "ıslak" }, { nl: "donker", tr: "karanlık" }, { nl: "gezellig", tr: "eğlenceli / hoş ortam" }, { nl: "moet", tr: "mecburiyet / -malı" },
+            { nl: "hond", tr: "köpek" }, { nl: "kalender", tr: "takvim" }, { nl: "februari", tr: "Şubat" }, { nl: "maart", tr: "Mart" },
+            { nl: "mei", tr: "Mayıs" }, { nl: "juni", tr: "Haziran" }, { nl: "augustus", tr: "Ağustos" }, { nl: "september", tr: "Eylül" },
+            { nl: "november", tr: "Kasım" }, { nl: "december", tr: "Aralık" }, { nl: "werk", tr: "iş" }, { nl: "lerares", tr: "bayan öğretmen" },
+            { nl: "school", tr: "okul" }, { nl: "laat", tr: "geç" }, { nl: "begint", tr: "başlıyor" }, { nl: "om", tr: "saat ...'de / -da" },
+            { nl: "half", tr: "buçuk / yarım" }, { nl: "tussen", tr: "arasında" }, { nl: "middag", tr: "öğle" }, { nl: "tot", tr: "-e kadar" },
+            { nl: "kwart", tr: "çeyrek" }, { nl: "voor", tr: "önce / önünde" }, { nl: "wanneer", tr: "ne zaman" }, { nl: "klaar", tr: "hazır / tamam" },
+            { nl: "lessen", tr: "dersler" }, { nl: "stopt", tr: "duruyor / bitiyor" }, { nl: "mogen", tr: "-e izinli olmak" }, { nl: "opruimen", tr: "toplamak" },
+            { nl: "sluit", tr: "kapatıyor" }, { nl: "bank", tr: "banka" }, { nl: "soms", tr: "bazen" }, { nl: "druk", tr: "yoğun" },
+            { nl: "weekend", tr: "hafta sonu" }, { nl: "hoeft", tr: "gerekmemek" }, { nl: "nooit", tr: "asla / hiçbir zaman" }, { nl: "gesloten", tr: "kapalı" },
+            { nl: "klok", tr: "saat (duvar saati)" }, { nl: "agenda", tr: "ajanda" }, { nl: "maandag", tr: "Pazartesi" }, { nl: "dinsdag", tr: "Salı" },
+            { nl: "woensdag", tr: "Çarşamba" }, { nl: "donderdag", tr: "Perşembe" }, { nl: "vrijdag", tr: "Cuma" }, { nl: "zaterdag", tr: "Cumartesi" },
+            { nl: "zondag", tr: "Pazar" }, { nl: "morgen", tr: "yarın / sabah" }, { nl: "avond", tr: "akşam" }, { nl: "nacht", tr: "gece" },
+            { nl: "drinken", tr: "içmek" }, { nl: "iets", tr: "bir şey" }, { nl: "laten", tr: "bırakmak" }, { nl: "tafel", tr: "masa" },
+            { nl: "raam", tr: "pencere" }, { nl: "stoelen", tr: "sandalyeler" }, { nl: "zullen", tr: "-ecek / -acak" }, { nl: "nemen", tr: "almak" },
+            { nl: "broodje", tr: "sandviç / ekmek" }, { nl: "kaas", tr: "peynir" }, { nl: "niets", tr: "hiçbir şey" }, { nl: "anders", tr: "başka" },
+            { nl: "zoveel", tr: "bu kadar çok" }, { nl: "honger", tr: "açlık" }, { nl: "soep", tr: "çorba" }, { nl: "lijkt", tr: "benziyor / görünüyor" },
+            { nl: "lekker", tr: "lezzetli / nefis" }, { nl: "vlees", tr: "et" }, { nl: "glas", tr: "bardak" }, { nl: "melk", tr: "süt" },
+            { nl: "haal", tr: "getir / al" }, { nl: "geld", tr: "para" }, { nl: "geven", tr: "vermek" }, { nl: "betalen", tr: "ödemek" },
+            { nl: "volgende", tr: "sonraki / gelecek" }, { nl: "keer", tr: "sefer / kez" }, { nl: "samen", tr: "birlikte" }, { nl: "collega", tr: "meslektaş" },
+            { nl: "thuis", tr: "evde" }, { nl: "gezin", tr: "aile" }, { nl: "meestal", tr: "genellikle" }, { nl: "vis", tr: "balık" },
+            { nl: "groente", tr: "sebze" }, { nl: "kip", tr: "tavuk" }, { nl: "vinden", tr: "bulmak" }, { nl: "ontbijt", tr: "kahvaltı" },
+            { nl: "brood", tr: "ekmek" }, { nl: "boter", tr: "tereyağı" }, { nl: "thee", tr: "çay" }, { nl: "koffie", tr: "kahve" },
+            { nl: "lunch", tr: "öğle yemeği" }, { nl: "aardappelen", tr: "patatesler" }, { nl: "water", tr: "su" }
         ]},
-        { les: "Les 23-24", words: [
-            { nl: "ons", tr: "bizim" }, { nl: "huis (het)", tr: "ev" }, { nl: "zien", tr: "görmek" }, { nl: "deur", tr: "kapı" },
-            { nl: "seizoenen", tr: "mevsimler" }, { nl: "januari", tr: "Ocak" }, { nl: "winter", tr: "kış" }, { nl: "koud", tr: "soğuk" }
-        ]},
-        { les: "Les 25-27", words: [
-            { nl: "werk (het)", tr: "iş" }, { nl: "school", tr: "okul" }, { nl: "laat", tr: "geç" }, { nl: "tijd", tr: "zaman" },
-            { nl: "eten", tr: "yemek" }, { nl: "drinken", tr: "içmek" }, { nl: "vroeg", tr: "erken" }, { nl: "bed", tr: "yatak" }
-        ]},
-        { les: "Les 28-35", words: [
-            { nl: "nieuwe", tr: "yeni" }, { nl: "familie", tr: "aile" }, { nl: "beter", tr: "iyi" }, { nl: "ziek", tr: "hasta" },
-            { nl: "fiets", tr: "bisiklet" }, { nl: "auto", tr: "otomobil" }, { nl: "waarom", tr: "neden" }, { nl: "omdat", tr: "çünkü" }
-        ]},
-        { les: "Les 36-45", words: [
-            { nl: "kind", tr: "çocuk" }, { nl: "trouwen", tr: "evlenmek" }, { nl: "leren", tr: "öğrenmek" }, { nl: "taal", tr: "dil" },
-            { nl: "vallen", tr: "düşmek" }, { nl: "ruim", tr: "fazla" }, { nl: "bellen", tr: "telefon etmek" }, { nl: "leraar", tr: "öğretmen" }
-        ]},
-        { les: "Les 46-65", words: [
-            { nl: "ervaring", tr: "tecrübe" }, { nl: "bouw", tr: "inşaat" }, { nl: "trein", tr: "tren" }, { nl: "pinnen", tr: "kartla ödeme" },
-            { nl: "vrije tijd", tr: "boş zaman" }, { nl: "geluk", tr: "mutluluk" }, { nl: "regels", tr: "kurallar" }, { nl: "zover", tr: "yaklaşmakta" }
+        { les: "M-Z", words: [
+            { nl: "vroeg", tr: "erken" }, { nl: "uit", tr: "dışarı / -dan" }, { nl: "doen", tr: "yapmak" }, { nl: "douchen", tr: "duş almak" },
+            { nl: "kleren", tr: "elbiseler" }, { nl: "maak", tr: "yapmak / hazırlamak" }, { nl: "wakker", tr: "uyanık" }, { nl: "wassen", tr: "yıkamak" },
+            { nl: "haar", tr: "saç / onun (kadın)" }, { nl: "iedereen", tr: "herkes" }, { nl: "behalve", tr: "hariç / dışında" }, { nl: "langzaam", tr: "yavaş" },
+            { nl: "roep", tr: "çağırmak" }, { nl: "oor", tr: "kulak" }, { nl: "luisteren", tr: "dinlemek" }, { nl: "nieuws", tr: "haberler" },
+            { nl: "wereld", tr: "dünya" }, { nl: "gebeurd", tr: "oldu / vuku buldu" }, { nl: "vertrekt", tr: "kalkıyor / gidiyor" }, { nl: "als", tr: "eğer / gibi" },
+            { nl: "breng", tr: "götür / getir" }, { nl: "moe", tr: "yorgun" }, { nl: "gelukkig", tr: "mutlu / neyse ki" }, { nl: "tijd", tr: "zaman" },
+            { nl: "opstaan", tr: "ağağa kalkmak" }, { nl: "mensen", tr: "insanlar" }, { nl: "buurt", tr: "mahalle / çevre" }, { nl: "wonen", tr: "yaşamak / ikamet" },
+            { nl: "familie", tr: "aile" }, { nl: "tuin", tr: "bahçe" }, { nl: "naast", tr: "yanında" }, { nl: "achternaam", tr: "soyadı" },
+            { nl: "moeder", tr: "anne" }, { nl: "vader", tr: "baba" }, { nl: "ouders", tr: "ebeveynler" }, { nl: "hepsi", tr: "hepsi" },
+            { nl: "blond", tr: "sarışın" }, { nl: "gisteren", tr: "dün" }, { nl: "belediye", tr: "belediye" }, { nl: "misschien", tr: "belki" },
+            { nl: "beter", tr: "daha iyi" }, { nl: "ziek", tr: "hasta" }, { nl: "hoofd", tr: "baş / kafa" }, { nl: "armen", tr: "kollar" },
+            { nl: "benen", tr: "bacaklar" }, { nl: "dokter", tr: "doktor" }, { nl: "apotheek", tr: "eczane" }, { nl: "medicijnen", tr: "ilaçlar" },
+            { nl: "herfst", tr: "sonbahar" }, { nl: "regen", tr: "yağmur" }, { nl: "slecht", tr: "kötü" }, { nl: "daarom", tr: "bu yüzden" },
+            { nl: "blijven", tr: "kalmak" }, { nl: "kunt", tr: "yapabilirsin" }, { nl: "zorgen", tr: "endişelenmek / bakmak" }, { nl: "genoeg", tr: "yeterli" },
+            { nl: "huisarts", tr: "aile hekimi" }, { nl: "gezond", tr: "sağlıklı" }, { nl: "beweeg", tr: "hareket et" }, { nl: "regelmatig", tr: "düzenli" },
+            { nl: "wandelen", tr: "yürüyüş yapmak" }, { nl: "minstens", tr: "en azından" }, { nl: "oppassen", tr: "dikkat etmek" }, { nl: "gewoontes", tr: "alışkanlıklar" },
+            { nl: "gebouw", tr: "bina" }, { nl: "les", tr: "ders" }, { nl: "krijgen", tr: "almak" }, { nl: "zeggen", tr: "söylemek" },
+            { nl: "deel", tr: "bölüm" }, { nl: "over", tr: "hakkında / üzerinden" }, { nl: "welke", tr: "hangi" }, { nl: "oefenen", tr: "pratik yapmak" },
+            { nl: "radio", tr: "radyo" }, { nl: "lees", tr: "oku" }, { nl: "mogelijk", tr: "mümkün" }, { nl: "bedankt", tr: "teşekkürler" },
+            { nl: "wilt", tr: "istiyorsun" }, { nl: "website", tr: "web sitesi" }, { nl: "kies", tr: "seç" }, { nl: "succes", tr: "başarılar" },
+            { nl: "vers", tr: "taze" }, { nl: "kopen", tr: "satın almak" }, { nl: "wie", tr: "kim" }, { nl: "vanavond", tr: "bu akşam" },
+            { nl: "fles", tr: "şişe" }, { nl: "wijn", tr: "şarap" }, { nl: "chocola", tr: "çikolata" }, { nl: "nieuw", tr: "yeni" },
+            { nl: "appartement", tr: "daire" }, { nl: "varmaken", tr: "varmak / gelmek" }, { nl: "winkelcentrum", tr: "alışveriş merkezi" }, { nl: "rechtdoor", tr: "dümdüz" },
+            { nl: "voorbij", tr: "geçince" }, { nl: "kerk", tr: "kilise" }, { nl: "meteen", tr: "hemen" }, { nl: "televisie", tr: "televizyon" },
+            { nl: "ziekenhuis", tr: "hastane" }, { nl: "hart", tr: "kalp" }, { nl: "onderzoek", tr: "araştırma" }, { nl: "trouwen", tr: "evlenmek" },
+            { nl: "verplicht", tr: "zorunlu" }, { nl: "wet", tr: "yasa / kanun" }, { nl: "taal", tr: "dil" }, { nl: "diploma", tr: "diploma" },
+            { nl: "universiteit", tr: "üniversite" }, { nl: "wedstrijd", tr: "maç / yarışma" }, { nl: "voetbal", tr: "futbol" }, { nl: "pauze", tr: "ara" },
+            { nl: "energie", tr: "enerji" }, { nl: "strafschop", tr: "penaltı" }, { nl: "ruzie", tr: "kavga" }, { nl: "vechten", tr: "dövüşmek" },
+            { nl: "resultaat", tr: "sonuç" }, { nl: "kracht", tr: "güç" }, { nl: "vies", tr: "kirli" }, { nl: "tas", tr: "çanta" },
+            { nl: "vloer", tr: "yer / zemin" }, { nl: "buitenland", tr: "yurt dışı" }, { nl: "reizen", tr: "seyahat etmek" }, { nl: "stad", tr: "şehir" },
+            { nl: "probleem", tr: "problem" }, { nl: "files", tr: "trafik kuyruğu" }, { nl: "bus", tr: "otobüs" }, { nl: "halte", tr: "durak" },
+            { nl: "wachten", tr: "beklemek" }, { nl: "goedkoper", tr: "daha ucuz" }, { nl: "den haag", tr: "lahey" }, { nl: "steden", tr: "şehirler" },
+            { nl: "teveel", tr: "çok fazla" }, { nl: "vet", tr: "yağlı" }, { nl: "roken", tr: "sigara / duman" }, { nl: "weinig", tr: "az" },
+            { nl: "voldoende", tr: "yeterli" }, { nl: "rust", tr: "dinlenme" }
         ]}
     ];
 
     const main = document.getElementById('mainContent');
-    const searchInput = document.getElementById('masterSearch');
 
-    // Sesli Okuma Fonksiyonu
-    function speak(text) {
-        const msg = new SpeechSynthesisUtterance();
-        msg.text = text;
-        msg.lang = 'nl-NL'; // Hollandaca
-        msg.rate = 0.8;
-        window.speechSynthesis.speak(msg);
-    }
-
+    
     // 1. DERSLERİ GÖSTER
     function renderLessons() {
         main.innerHTML = `<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">` + 
@@ -137,15 +195,12 @@
             <h2 class="text-2xl font-bold mb-8 text-gray-800">${data.les} Kelime Listesi</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 ${data.words.map(w => `
-                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 hover:border-orange-200 group">
+                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 hover:border-orange-200">
                         <div class="flex justify-between items-start">
                             <div class="flex-grow">
                                 <p class="font-bold text-lg text-gray-800 mb-1">${w.nl}</p>
                                 <p class="text-sm text-gray-600">${w.tr}</p>
                             </div>
-                            <button onclick="speak('${w.nl}')" class="w-12 h-12 rounded-full bg-gray-50 text-gray-400 flex items-center justify-center hover:bg-orange-100 hover:text-orange-600 transition-all duration-300 ml-3 flex-shrink-0">
-                                <i class="fas fa-volume-up"></i>
-                            </button>
                         </div>
                     </div>
                 `).join('')}
@@ -179,69 +234,7 @@
         `;
     }
 
-    // 4. AKILLI ARAMA
-    searchInput.addEventListener('input', (e) => {
-        const val = e.target.value.toLowerCase();
-        if(!val) { renderLessons(); return; }
-        
-        let results = [];
-        masterData.forEach(d => {
-            d.words.forEach(w => {
-                if(w.nl.toLowerCase().includes(val) || w.tr.toLowerCase().includes(val)) {
-                    results.push({...w, les: d.les});
-                }
-            });
-        });
-
-        main.innerHTML = `<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">` + 
-            results.map(r => `
-                <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition-all duration-300 hover:border-orange-200 group">
-                    <div class="flex justify-between items-start">
-                        <div class="flex-grow">
-                            <p class="font-bold text-lg text-gray-800 mb-1">${r.nl}</p>
-                            <p class="text-sm text-gray-600 mb-2">${r.tr}</p>
-                            <span class="text-xs uppercase font-bold text-orange-500 bg-orange-50 px-2 py-1 rounded-full inline-block">${r.les}</span>
-                        </div>
-                        <button onclick="speak('${r.nl}')" class="w-12 h-12 rounded-full bg-gray-50 text-gray-400 flex items-center justify-center hover:bg-orange-100 hover:text-orange-600 transition-all duration-300 ml-3 flex-shrink-0">
-                            <i class="fas fa-volume-up"></i>
-                        </button>
-                    </div>
-                </div>
-            `).join('') + `</div>`;
-    });
-
-    // 5. PRATİK MODU (Flaş Kartlar)
-    function startPractice() {
-        const allWords = masterData.flatMap(d => d.words);
-        const randomWord = allWords[Math.floor(Math.random() * allWords.length)];
-        
-        main.innerHTML = `
-            <div class="flex flex-col items-center justify-center pt-10">
-                <div class="word-card w-full max-w-3xl h-80 cursor-pointer" onclick="this.querySelector('.flip-content').classList.toggle('flipped')">
-                    <div class="flip-content relative w-full h-full shadow-2xl rounded-3xl">
-                        <!-- ÖN YÜZ -->
-                        <div class="front absolute inset-0 bg-gradient-to-br from-orange-500 to-orange-600 text-white rounded-3xl flex flex-col items-center justify-center p-8 text-center">
-                            <span class="text-sm opacity-80 mb-4 uppercase tracking-widest font-medium">Hollandaca</span>
-                            <h2 class="text-5xl font-bold mb-4">${randomWord.nl}</h2>
-                            <p class="text-sm italic opacity-80">Anlamı görmek için tıkla</p>
-                        </div>
-                        <!-- ARKA YÜZ -->
-                        <div class="back absolute inset-0 bg-gradient-to-br from-white to-gray-50 text-gray-800 rounded-3xl border-4 border-orange-500 flex flex-col items-center justify-center p-8 text-center">
-                            <span class="text-sm text-gray-500 mb-4 uppercase tracking-widest font-medium">Türkçe Anlamı</span>
-                            <h2 class="text-5xl font-bold text-orange-600 mb-4">${randomWord.tr}</h2>
-                            <button onclick="speak('${randomWord.nl}')" class="bg-orange-100 text-orange-600 px-6 py-3 rounded-full hover:bg-orange-200 transition-colors font-medium">
-                                <i class="fas fa-volume-up mr-2"></i>Dinle
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <button onclick="startPractice()" class="mt-12 bg-gradient-to-r from-gray-800 to-gray-900 text-white px-10 py-4 rounded-2xl font-bold shadow-xl hover:shadow-2xl active:scale-95 transition-all duration-300">
-                    SIRADAKİ KELİME <i class="fas fa-arrow-right ml-3 text-orange-400"></i>
-                </button>
-            </div>
-        `;
-    }
-
+    
     function showSection(s) {
         document.querySelectorAll('.nav-item').forEach(i => i.classList.replace('text-orange-600', 'text-gray-400'));
         event.currentTarget.classList.replace('text-gray-400', 'text-orange-600');
