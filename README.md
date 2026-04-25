@@ -1,72 +1,72 @@
-# Naar Nederland - Dutch Learning App
+# Naar Nederland - Hollandaca Öğrenme Uygulaması
 
-A mobile-responsive web application for learning Dutch vocabulary with flashcards, search, and practice modes.
+Flash kartlar, arama ve pratik modları ile Hollandaca kelime öğrenmek için mobil uyumlu web uygulaması.
 
-## Features
+## Özellikler
 
-- **15-Day Learning Plan**: Structured curriculum from Les 21-65
-- **Interactive Flashcards**: Flip cards for practice mode
-- **Smart Search**: Search in both Dutch and Turkish
-- **Voice Pronunciation**: Text-to-speech for Dutch words
-- **Mobile Optimized**: Perfect for phone/tablet usage
-- **Progress Tracking**: Visual progress indicators
+- **15 Günlük Öğrenme Planı**: Les 21-65 yapılandırılmış müfredat
+- **İnteraktif Flash Kartlar**: Pratik modu için çevrilebilir kartlar
+- **Akıllı Arama**: Hem Hollandaca hem de Türkçe arama
+- **Sesli Telaffuz**: Hollandaca kelimeler için metinden konuşma
+- **Mobil Optimize**: Telefon/tablet kullanımı için mükemmel
+- **İlerleme Takibi**: Görsel ilerleme göstergeleri
 
-## Deployment to Cloudflare Pages
+## Cloudflare Pages'e Yayınlama
 
-### Step 1: Create GitHub Repository
-1. Go to [GitHub](https://github.com) and create a new repository
-2. Name it: `naar-nederland-app`
-3. Keep it public or private (your choice)
-4. Don't initialize with README (we already have one)
+### Adım 1: GitHub Deposu Oluştur
+1. [GitHub](https://github.com) sitesine gidin ve yeni depo oluşturun
+2. Adı: `naar-nederland-app`
+3. Herkese açık veya özel seçebilirsiniz
+4. README ile başlatmayın (biz zaten bir tane oluşturduk)
 
-### Step 2: Push to GitHub
+### Adım 2: GitHub'a Gönder
 ```bash
-# Add your GitHub repository as remote (replace YOUR_USERNAME)
+# GitHub deponuzu remote olarak ekleyin (YOUR_USERNAME kısmını değiştirin)
 git remote add origin https://github.com/YOUR_USERNAME/naar-nederland-app.git
 git branch -M main
 git push -u origin main
 ```
 
-### Step 3: Deploy to Cloudflare Pages
-1. Go to [Cloudflare Dashboard](https://dash.cloudflare.com)
-2. Navigate to **Pages** section
-3. Click **"Create a project"**
-4. Choose **"Connect to Git"**
-5. Select GitHub and authorize if needed
-6. Choose your `naar-nederland-app` repository
-7. **Build Settings**:
+### Adım 3: Cloudflare Pages'e Yayınla
+1. [Cloudflare Panel](https://dash.cloudflare.com) gidin
+2. **Pages** bölümüne gidin
+3. **"Create a project"** tıklayın
+4. **"Connect to Git"** seçin
+5. GitHub'ı seçin ve yetkilendirme gerekiyorsa yapın
+6. `naar-nederland-app` deponuzu seçin
+7. **Build Ayarları**:
    - **Framework preset**: None
-   - **Build command**: Leave empty
-   - **Build output directory**: Leave empty (root)
-8. Click **"Save and Deploy"**
+   - **Build command**: Boş bırakın
+   - **Build output directory**: Boş bırakın (kök dizin)
+8. **"Save and Deploy"** tıklayın
 
-### Step 4: Get Your URL
-After deployment, Cloudflare will give you:
-- **Preview URL**: For testing
-- **Production URL**: Your live site (usually `your-project.pages.dev`)
+### Adım 4: URL'nizi Alın
+Yayınlamadan sonra Cloudflare size verecek:
+- **Preview URL**: Test için
+- **Production URL**: Canlı siteniz (genellikle `your-project.pages.dev`)
 
-## Custom Domain (Optional)
-1. In Cloudflare Pages project settings
-2. Go to **"Custom domains"**
-3. Add your domain (e.g., `naar-nederland.com`)
-4. Update DNS records as instructed
+## Özel Alan Adı (İsteğe Bağlı)
+1. Cloudflare Pages proje ayarlarından
+2. **"Custom domains"** gidin
+3. Alan adınızı ekleyin (örneğin, `naar-nederland.com`)
+4. DNS kayıtlarını talimatlara göre güncelleyin
 
-## Project Structure
+## Proje Yapısı
 ```
 leren/
-├── index.html          # Main application file
-└── README.md          # This file
+├── index.html          # Ana uygulama dosyası
+└── README.md          # Bu dosya
 ```
 
-## Technologies Used
-- **HTML5** with semantic markup
-- **Tailwind CSS** via CDN for styling
-- **Font Awesome** for icons
-- **Vanilla JavaScript** for functionality
-- **Web Speech API** for pronunciation
+## Kullanılan Teknolojiler
+- **HTML5** anlamsal işaretleme
+- **Tailwind CSS** CDN üzerinden stil için
+- **Font Awesome** ikonlar için
+- **Vanilla JavaScript** fonksiyonellik için
+- **Web Speech API** telaffuz için
 
-## Notes
-- No build process required - static HTML file
-- All dependencies loaded via CDN
-- Fully responsive design
-- Works offline once loaded
+## Notlar
+- Derleme süreci gerekmiyor - statik HTML dosyası
+- Tüm bağımlılıklar CDN üzerinden yüklenir
+- Tamamen duyarlı tasarım
+- Yüklendikten sonra çevrimdışı çalışır
